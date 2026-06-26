@@ -16,7 +16,7 @@ export const hero = {
     "I turn complex requirements into clean, maintainable interfaces. From Figma to production, I own the frontend — and the backend that powers it.",
   ctas: [
     { label: "View my work", href: "#work",   variant: "primary" as const },
-    { label: "Download CV",  href: "/cv.pdf", variant: "ghost"   as const },
+    { label: "Download CV",  href: "https://docs.google.com/document/d/1oi8mFWDTcyY_W0gTNuiLyxRczfhw4kD8UzAxPr19RQk/edit?usp=sharing", variant: "ghost"   as const },
   ],
   stack: ["React", "Next.js", "TypeScript", "Node.js", "Angular", "SQL"],
 };
