@@ -1,0 +1,180 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import "tailwindcss";
+
+/* ── Design tokens ──────────────────────────────────── */
+@theme {
+  --color-bg-base:      #0a0a0a;
+  --color-bg-surface:   #111111;
+  --color-bg-elevated:  #1a1a1a;
+
+  --color-border-subtle: #1f2937;
+  --color-border:        #374151;
+
+  --color-text-primary: #f9fafb;
+  --color-text-muted:   #9ca3af;
+  --color-text-dim:     #6b7280;
+
+  --color-accent:           #2563eb;
+  --color-accent-dark:      #1d4ed8;
+  --color-accent-subtle:    #1e3a5f;
+  --color-accent-foreground:#93c5fd;
+
+  --font-sans: "Inter", system-ui, sans-serif;
+  --font-mono: "JetBrains Mono", monospace;
+
+  --border-radius-tag:  4px;
+  --border-radius-btn:  6px;
+  --border-radius-card: 12px;
+
+  --spacing-section:    6rem;
+  --spacing-section-sm: 4rem;
+
+  --max-width-content: 1200px;
+}
+
+/* ── Base ──────────────────────────────────────────── */
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  background-color: var(--color-bg-base);
+  color: var(--color-text-primary);
+  font-family: var(--font-sans);
+}
+
+::selection {
+  background: #2563eb40;
+  color: #f9fafb;
+}
+
+:focus-visible {
+  outline: 2px solid #2563eb;
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar       { width: 6px; }
+::-webkit-scrollbar-track { background: #0a0a0a; }
+::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 3px; }
+::-webkit-scrollbar-thumb:hover { background: #374151; }
+
+/* ── Layout ────────────────────────────────────────── */
+.container {
+  max-width: var(--max-width-content);
+  margin-inline: auto;
+  padding-inline: 1.5rem;
+}
+@media (min-width: 768px)  { .container { padding-inline: 2rem; } }
+@media (min-width: 1024px) { .container { padding-inline: 3rem; } }
+
+/* ── Buttons ───────────────────────────────────────── */
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--color-accent);
+  color: #fff;
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--border-radius-btn);
+  border: none;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms;
+}
+.btn-primary:hover { background-color: var(--color-accent-dark); }
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: transparent;
+  color: var(--color-text-primary);
+  font-size: 0.875rem;
+  font-weight: 500;
+  padding: 0.625rem 1.25rem;
+  border-radius: var(--border-radius-btn);
+  border: 1px solid var(--color-border-subtle);
+  cursor: pointer;
+  text-decoration: none;
+  transition: background-color 150ms;
+}
+.btn-ghost:hover { background-color: var(--color-bg-surface); }
+
+/* ── Tags / badges ─────────────────────────────────── */
+.tag {
+  display: inline-block;
+  background-color: var(--color-bg-elevated);
+  color: var(--color-text-muted);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--border-radius-tag);
+  border: 1px solid var(--color-border-subtle);
+}
+
+.tag-accent {
+  display: inline-block;
+  background-color: var(--color-accent-subtle);
+  color: var(--color-accent-foreground);
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  padding: 0.125rem 0.5rem;
+  border-radius: var(--border-radius-tag);
+}
+
+/* ── Cards ─────────────────────────────────────────── */
+.card {
+  background-color: var(--color-bg-surface);
+  border: 1px solid var(--color-border-subtle);
+  border-radius: var(--border-radius-card);
+  padding: 1.25rem;
+  transition: border-color 200ms;
+}
+.card:hover { border-color: var(--color-border); }
+
+/* ── Section ───────────────────────────────────────── */
+.section    { padding-block: var(--spacing-section); }
+.section-sm { padding-block: var(--spacing-section-sm); }
+
+/* ── Eyebrow ───────────────────────────────────────── */
+.eyebrow {
+  font-size: 0.75rem;
+  font-family: var(--font-mono);
+  color: var(--color-accent);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+}
+
+/* ── Divider ───────────────────────────────────────── */
+.divider { border-top: 1px solid var(--color-border-subtle); }
+
+/* ── Typography helpers ────────────────────────────── */
+.text-display {
+  font-size: clamp(2.5rem, 6vw, 4rem);
+  line-height: 1.05;
+  letter-spacing: -0.03em;
+}
+.text-h1 {
+  font-size: clamp(2rem, 4vw, 2.5rem);
+  line-height: 1.1;
+  letter-spacing: -0.02em;
+}
+.text-h2 {
+  font-size: clamp(1.5rem, 3vw, 1.75rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+}
+.text-h3 {
+  font-size: 1.125rem;
+  line-height: 1.4;
+}
+.text-body {
+  font-size: 1rem;
+  line-height: 1.7;
+}
+.text-balance { text-wrap: balance; }
