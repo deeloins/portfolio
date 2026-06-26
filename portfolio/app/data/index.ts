@@ -35,7 +35,7 @@ export const work = [
     eyebrow: "InsurTech · Stringify Consulting",
     company: "Surebase",
     role: "Frontend Developer",
-    period: "2024 – Present",
+    period: "2024 – 2026",
     summary:
       "Surebase is a B2B insurance aggregation platform consolidating thousands of insurance products into a single unified API — serving brokers, fintechs, and banks across Nigeria. I contributed to the marketing site through Stringify Consulting.",
     problem:

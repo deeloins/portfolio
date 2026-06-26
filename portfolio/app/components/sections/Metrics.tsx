@@ -13,7 +13,7 @@ export default function Metrics() {
               key={m.label}
               initial={{ opacity: 0, y: 16 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
+              viewport={{ once: false }}
               transition={{ duration: 0.4, delay: i * 0.07 }}
               className="text-center"
             >
