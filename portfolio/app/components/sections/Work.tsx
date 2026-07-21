@@ -146,7 +146,7 @@ export default function Work() {
         </div>
 
         {/* ── Freelance projects ── */}
-        <motion.div
+        {/* <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: false }}
@@ -166,7 +166,7 @@ export default function Work() {
           {freelance.map((project, i) => (
             <FreelanceCard key={project.slug} project={project} i={i} />
           ))}
-        </div>
+        </div> */}
 
       </div>
     </section>

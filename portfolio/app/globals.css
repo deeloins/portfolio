@@ -1,74 +1,94 @@
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap");
 @import "tailwindcss";
 
-/* ── Design tokens ──────────────────────────────────── */
-@theme {
-  --color-bg-base:      #0a0a0a;
-  --color-bg-surface:   #111111;
-  --color-bg-elevated:  #1a1a1a;
-
+/* ── Dark theme (default) ───────────────────────────── */
+:root,
+[data-theme="dark"] {
+  --color-bg-base: #0a0a0a;
+  --color-bg-surface: #111111;
+  --color-bg-elevated: #1a1a1a;
   --color-border-subtle: #1f2937;
-  --color-border:        #374151;
-
+  --color-border: #374151;
   --color-text-primary: #f9fafb;
-  --color-text-muted:   #9ca3af;
-  --color-text-dim:     #6b7280;
+  --color-text-muted: #9ca3af;
+  --color-text-dim: #6b7280;
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8;
+  --color-accent-subtle: #1e3a5f;
+  --color-accent-foreground: #93c5fd;
+  --shadow-card: 0 0 0 1px #1f2937;
+  --name-stroke: rgba(249, 250, 251, 0.15);
+}
 
-  --color-accent:           #2563eb;
-  --color-accent-dark:      #1d4ed8;
-  --color-accent-subtle:    #1e3a5f;
-  --color-accent-foreground:#93c5fd;
-
-  --font-sans: "Inter", system-ui, sans-serif;
-  --font-mono: "JetBrains Mono", monospace;
-
-  --border-radius-tag:  4px;
-  --border-radius-btn:  6px;
-  --border-radius-card: 12px;
-
-  --spacing-section:    6rem;
-  --spacing-section-sm: 4rem;
-
-  --max-width-content: 1200px;
+/* ── Light theme ────────────────────────────────────── */
+[data-theme="light"] {
+  --color-bg-base: #ffffff;
+  --color-bg-surface: #f8fafc;
+  --color-bg-elevated: #f1f5f9;
+  --color-border-subtle: #e2e8f0;
+  --color-border: #cbd5e1;
+  --color-text-primary: #0f172a;
+  --color-text-muted: #475569;
+  --color-text-dim: #94a3b8;
+  --color-accent: #2563eb;
+  --color-accent-dark: #1d4ed8;
+  --color-accent-subtle: #dbeafe;
+  --color-accent-foreground: #1d4ed8;
+  --shadow-card: 0 1px 3px rgba(0, 0, 0, 0.08), 0 0 0 1px #e2e8f0;
+  --name-stroke: rgba(15, 23, 42, 0.12);
 }
 
 /* ── Base ──────────────────────────────────────────── */
 html {
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
 }
 
 body {
   background-color: var(--color-bg-base);
   color: var(--color-text-primary);
-  font-family: var(--font-sans);
+  font-family: "Inter", system-ui, sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
 }
 
 ::selection {
-  background: #2563eb40;
-  color: #f9fafb;
+  background: #2563eb30;
+  color: var(--color-text-primary);
 }
-
 :focus-visible {
   outline: 2px solid #2563eb;
   outline-offset: 2px;
   border-radius: 4px;
 }
-
-::-webkit-scrollbar       { width: 6px; }
-::-webkit-scrollbar-track { background: #0a0a0a; }
-::-webkit-scrollbar-thumb { background: #1f2937; border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #374151; }
+::-webkit-scrollbar {
+  width: 5px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-bg-base);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-subtle);
+  border-radius: 3px;
+}
 
 /* ── Layout ────────────────────────────────────────── */
 .container {
-  max-width: var(--max-width-content);
+  max-width: 1200px;
   margin-inline: auto;
   padding-inline: 1.5rem;
 }
-@media (min-width: 768px)  { .container { padding-inline: 2rem; } }
-@media (min-width: 1024px) { .container { padding-inline: 3rem; } }
+@media (min-width: 768px) {
+  .container {
+    padding-inline: 2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .container {
+    padding-inline: 3rem;
+  }
+}
 
 /* ── Buttons ───────────────────────────────────────── */
 .btn-primary {
@@ -80,13 +100,18 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.625rem 1.25rem;
-  border-radius: var(--border-radius-btn);
+  border-radius: 6px;
   border: none;
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 150ms;
+  transition:
+    background-color 150ms,
+    transform 150ms;
 }
-.btn-primary:hover { background-color: var(--color-accent-dark); }
+.btn-primary:hover {
+  background-color: var(--color-accent-dark);
+  transform: translateY(-1px);
+}
 
 .btn-ghost {
   display: inline-flex;
@@ -97,63 +122,76 @@ body {
   font-size: 0.875rem;
   font-weight: 500;
   padding: 0.625rem 1.25rem;
-  border-radius: var(--border-radius-btn);
+  border-radius: 6px;
   border: 1px solid var(--color-border-subtle);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 150ms;
+  transition:
+    background-color 150ms,
+    border-color 150ms,
+    transform 150ms;
 }
-.btn-ghost:hover { background-color: var(--color-bg-surface); }
+.btn-ghost:hover {
+  background-color: var(--color-bg-surface);
+  border-color: var(--color-border);
+  transform: translateY(-1px);
+}
 
-/* ── Tags / badges ─────────────────────────────────── */
+/* ── Tags ──────────────────────────────────────────── */
 .tag {
   display: inline-block;
   background-color: var(--color-bg-elevated);
   color: var(--color-text-muted);
   font-size: 0.75rem;
-  font-family: var(--font-mono);
+  font-family: "JetBrains Mono", monospace;
   padding: 0.125rem 0.5rem;
-  border-radius: var(--border-radius-tag);
+  border-radius: 4px;
   border: 1px solid var(--color-border-subtle);
-}
-
-.tag-accent {
-  display: inline-block;
-  background-color: var(--color-accent-subtle);
-  color: var(--color-accent-foreground);
-  font-size: 0.75rem;
-  font-family: var(--font-mono);
-  padding: 0.125rem 0.5rem;
-  border-radius: var(--border-radius-tag);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    border-color 0.3s;
 }
 
 /* ── Cards ─────────────────────────────────────────── */
 .card {
   background-color: var(--color-bg-surface);
   border: 1px solid var(--color-border-subtle);
-  border-radius: var(--border-radius-card);
+  border-radius: 12px;
   padding: 1.25rem;
-  transition: border-color 200ms;
+  transition:
+    border-color 200ms,
+    box-shadow 200ms,
+    background-color 0.3s;
+  box-shadow: var(--shadow-card);
 }
-.card:hover { border-color: var(--color-border); }
+.card:hover {
+  border-color: var(--color-border);
+}
 
-/* ── Section ───────────────────────────────────────── */
-.section    { padding-block: var(--spacing-section); }
-.section-sm { padding-block: var(--spacing-section-sm); }
+/* ── Sections ──────────────────────────────────────── */
+.section {
+  padding-block: 6rem;
+}
+.section-sm {
+  padding-block: 4rem;
+}
 
 /* ── Eyebrow ───────────────────────────────────────── */
 .eyebrow {
   font-size: 0.75rem;
-  font-family: var(--font-mono);
+  font-family: "JetBrains Mono", monospace;
   color: var(--color-accent);
   text-transform: uppercase;
   letter-spacing: 0.1em;
 }
 
 /* ── Divider ───────────────────────────────────────── */
-.divider { border-top: 1px solid var(--color-border-subtle); }
+.divider {
+  border-top: 1px solid var(--color-border-subtle);
+}
 
-/* ── Typography helpers ────────────────────────────── */
+/* ── Typography ────────────────────────────────────── */
 .text-display {
   font-size: clamp(2.5rem, 6vw, 4rem);
   line-height: 1.05;
@@ -167,7 +205,6 @@ body {
 .text-h2 {
   font-size: clamp(1.5rem, 3vw, 1.75rem);
   line-height: 1.2;
-  letter-spacing: -0.01em;
 }
 .text-h3 {
   font-size: 1.125rem;
@@ -177,4 +214,26 @@ body {
   font-size: 1rem;
   line-height: 1.7;
 }
-.text-balance { text-wrap: balance; }
+.text-balance {
+  text-wrap: balance;
+}
+
+/* ── Keyframes ─────────────────────────────────────── */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
+}
+@keyframes pulse-green {
+  0%,
+  100% {
+    box-shadow: 0 0 0 3px rgba(34, 197, 94, 0.2);
+  }
+  50% {
+    box-shadow: 0 0 0 6px rgba(34, 197, 94, 0.08);
+  }
+}

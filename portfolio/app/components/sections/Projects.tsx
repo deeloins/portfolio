@@ -44,128 +44,110 @@ const projects = [
   },
 ];
 
-function ProjectCard({ project }: { project: typeof projects[0] }) {
+function ProjectCard({ project, i }: { project: typeof projects[0]; i: number }) {
   const [hovered, setHovered] = useState(false);
 
   return (
     <motion.div
-      initial={{ opacity: 0, y: 20 }}
+      initial={{ opacity: 0, y: 28 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false }}
-      transition={{ duration: 0.4 }}
+      viewport={{ once: false, margin: "-60px" }}
+      transition={{ duration: 0.5, delay: i * 0.08, ease: [0.22, 1, 0.36, 1] }}
       onMouseEnter={() => setHovered(true)}
       onMouseLeave={() => setHovered(false)}
       style={{
         position: "relative",
-        borderRadius: "var(--border-radius-card)",
-        border: "1px solid var(--color-border-subtle)",
+        borderRadius: "12px",
+        border: `1px solid ${hovered ? "var(--color-border)" : "var(--color-border-subtle)"}`,
         background: "var(--color-bg-surface)",
         overflow: "hidden",
         cursor: "pointer",
         transition: "border-color 200ms",
-        borderColor: hovered ? "var(--color-border)" : "var(--color-border-subtle)",
+        /* Fixed height so all cards are same size */
+        minHeight: "220px",
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "flex-end",
       }}
     >
-      {/* Screenshot reveal on hover */}
+      {/* Screenshot reveal */}
       <AnimatePresence>
         {hovered && (
           <motion.div
-            initial={{ opacity: 0, scale: 1.04 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0, scale: 1.04 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            style={{
-              position: "absolute",
-              inset: 0,
-              zIndex: 1,
-            }}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            style={{ position: "absolute", inset: 0, zIndex: 1 }}
           >
             <Image
               src={project.image}
               alt={`${project.company} screenshot`}
               fill
-              style={{ objectFit: "cover", objectPosition: "top" }}
+              style={{ objectFit: "cover", objectPosition: "top center" }}
               sizes="(max-width: 768px) 100vw, 50vw"
             />
-            {/* Dark overlay so text stays readable */}
-            <div
-              style={{
-                position: "absolute",
-                inset: 0,
-                background: "linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.3) 60%, rgba(0,0,0,0.1) 100%)",
-              }}
-            />
+            {/* Gradient overlay */}
+            <div style={{
+              position: "absolute", inset: 0,
+              background: "linear-gradient(to top, rgba(0,0,0,0.88) 0%, rgba(0,0,0,0.4) 50%, rgba(0,0,0,0.05) 100%)",
+            }} />
           </motion.div>
         )}
       </AnimatePresence>
 
-      {/* Card content */}
-      <div
-        style={{
-          position: "relative",
-          zIndex: 2,
-          padding: "1.25rem",
-          display: "flex",
-          flexDirection: "column",
-          gap: "0.75rem",
-          minHeight: "180px",
-          justifyContent: "flex-end",
-        }}
-      >
-        <div>
-          <p className="eyebrow" style={{ marginBottom: "0.375rem" }}>
-            {project.eyebrow}
-          </p>
-          <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
-            <h3
-              style={{
-                fontSize: "1rem",
-                fontWeight: 600,
-                color: hovered ? "#f9fafb" : "var(--color-text-primary)",
-                transition: "color 200ms",
-              }}
-            >
-              {project.company}
-            </h3>
-            <a
-              href={project.link}
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={(e) => e.stopPropagation()}
-              style={{
-                color: hovered ? "#f9fafb" : "var(--color-text-dim)",
-                transition: "color 200ms",
-                flexShrink: 0,
-              }}
-              aria-label={`Visit ${project.company}`}
-            >
-              <ExternalLink size={15} />
-            </a>
-          </div>
+      {/* Card content always above image */}
+      <div style={{
+        position: "relative", zIndex: 2,
+        padding: "1.25rem",
+        display: "flex", flexDirection: "column", gap: "0.625rem",
+      }}>
+        <p className="eyebrow" style={{
+          color: hovered ? "rgba(147,197,253,0.9)" : "var(--color-accent)",
+          transition: "color 200ms",
+        }}>
+          {project.eyebrow}
+        </p>
+
+        <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", gap: "0.5rem" }}>
+          <h3 style={{
+            fontSize: "1rem", fontWeight: 600,
+            color: hovered ? "#f9fafb" : "var(--color-text-primary)",
+            transition: "color 200ms", margin: 0,
+          }}>
+            {project.company}
+          </h3>
+          <a
+            href={project.link} target="_blank" rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              color: hovered ? "rgba(249,250,251,0.7)" : "var(--color-text-dim)",
+              transition: "color 200ms", flexShrink: 0,
+            }}
+          >
+            <ExternalLink size={15} />
+          </a>
         </div>
 
-        <p
-          style={{
-            fontSize: "0.8125rem",
-            color: hovered ? "rgba(249,250,251,0.8)" : "var(--color-text-muted)",
-            lineHeight: 1.6,
-            transition: "color 200ms",
-          }}
-        >
+        <p style={{
+          fontSize: "0.8125rem", lineHeight: 1.65,
+          color: hovered ? "rgba(249,250,251,0.75)" : "var(--color-text-muted)",
+          transition: "color 200ms",
+        }}>
           {project.summary}
         </p>
 
-        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem" }}>
+        <div style={{ display: "flex", flexWrap: "wrap", gap: "0.375rem", marginTop: "0.25rem" }}>
           {project.tags.map((tag) => (
-            <span
-              key={tag}
-              className="tag"
-              style={hovered ? {
-                background: "rgba(255,255,255,0.1)",
-                borderColor: "rgba(255,255,255,0.2)",
-                color: "rgba(249,250,251,0.8)",
-              } : {}}
-            >
+            <span key={tag} style={{
+              display: "inline-block",
+              fontSize: "0.7rem", fontFamily: "JetBrains Mono, monospace",
+              padding: "0.125rem 0.5rem", borderRadius: "4px",
+              background: hovered ? "rgba(255,255,255,0.12)" : "var(--color-bg-elevated)",
+              border: `1px solid ${hovered ? "rgba(255,255,255,0.18)" : "var(--color-border-subtle)"}`,
+              color: hovered ? "rgba(249,250,251,0.8)" : "var(--color-text-muted)",
+              transition: "all 200ms",
+            }}>
               {tag}
             </span>
           ))}
@@ -177,48 +159,53 @@ function ProjectCard({ project }: { project: typeof projects[0] }) {
 
 export default function Projects() {
   return (
-    <section
-      style={{
-        paddingBlock: "var(--spacing-section)",
-        borderTop: "1px solid var(--color-border-subtle)",
-        background: "var(--color-bg-surface)",
-      }}
-    >
+    <section style={{
+      paddingBlock: "6rem",
+      borderTop: "1px solid var(--color-border-subtle)",
+      background: "var(--color-bg-surface)",
+    }}>
       <div className="container">
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false }}
-          transition={{ duration: 0.5 }}
+          initial={{ opacity: 0, y: 20 }} whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false }} transition={{ duration: 0.5 }}
           style={{ marginBottom: "3rem" }}
         >
           <p className="eyebrow" style={{ marginBottom: "0.75rem" }}>Freelance</p>
-          <h2
-            className="text-h1"
-            style={{ fontWeight: 700, color: "var(--color-text-primary)" }}
-          >
+          <h2 style={{
+            fontSize: "clamp(2rem, 4vw, 2.5rem)", fontWeight: 700,
+            letterSpacing: "-0.02em", color: "var(--color-text-primary)", marginBottom: "0.75rem",
+          }}>
             Client projects
           </h2>
           <p style={{
-            fontSize: "0.9375rem",
-            color: "var(--color-text-muted)",
-            marginTop: "0.75rem",
-            maxWidth: "36rem",
+            fontSize: "0.9375rem", color: "var(--color-text-muted)",
+            maxWidth: "36rem", lineHeight: 1.7,
           }}>
-            End-to-end builds delivered independently — brief, design, build, and deployment. Hover to preview.
+            End-to-end builds delivered independently — brief, design, build, and deployment.{" "}
+            <span style={{ color: "var(--color-text-dim)" }}>Hover to preview.</span>
           </p>
         </motion.div>
 
+        {/* 2-column grid — avoids orphan on 4 items */}
         <div style={{
           display: "grid",
-          gridTemplateColumns: "repeat(auto-fill, minmax(280px, 1fr))",
+          gridTemplateColumns: "repeat(2, 1fr)",
           gap: "1rem",
-        }}>
-          {projects.map((project) => (
-            <ProjectCard key={project.slug} project={project} />
+        }} className="projects-grid">
+          {projects.map((project, i) => (
+            <ProjectCard key={project.slug} project={project} i={i} />
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (min-width: 1024px) {
+          .projects-grid { grid-template-columns: repeat(4, 1fr) !important; }
+        }
+        @media (max-width: 540px) {
+          .projects-grid { grid-template-columns: 1fr !important; }
+        }
+      `}</style>
     </section>
   );
 }
