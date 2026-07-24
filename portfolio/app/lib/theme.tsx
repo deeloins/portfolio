@@ -1,32 +1,33 @@
 "use client";
-
-import { createContext, useContext, useEffect, useMemo, useState } from "react";
+import { createContext, useContext, useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
-function getInitialTheme(): Theme {
-  if (typeof window === "undefined") return "dark";
-  const stored = window.localStorage.getItem("theme");
-  return stored === "light" ? "light" : "dark";
-}
-
-const ThemeContext = createContext<{ theme: Theme; toggle: () => void }>({
-  theme: "dark",
-  toggle: () => {},
+const Ctx = createContext<{ theme: Theme; toggle: () => void }>({
+  theme: "dark", toggle: () => {},
 });
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
-  const [theme, setTheme] = useState<Theme>(getInitialTheme);
+  const [theme, setTheme] = useState<Theme>("dark");
+  const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
+    const stored = localStorage.getItem("mp-theme") as Theme | null;
+    if (stored) setTheme(stored);
+    setMounted(true);
+  }, []);
+
+  useEffect(() => {
+    if (!mounted) return;
     document.documentElement.setAttribute("data-theme", theme);
-    window.localStorage.setItem("theme", theme);
-  }, [theme]);
+    localStorage.setItem("mp-theme", theme);
+  }, [theme, mounted]);
 
-  const toggle = () => setTheme((current) => (current === "dark" ? "light" : "dark"));
-  const value = useMemo(() => ({ theme, toggle }), [theme]);
-
-  return <ThemeContext.Provider value={value}>{children}</ThemeContext.Provider>;
+  return (
+    <Ctx.Provider value={{ theme, toggle: () => setTheme(t => t === "dark" ? "light" : "dark") }}>
+      {children}
+    </Ctx.Provider>
+  );
 }
 
-export const useTheme = () => useContext(ThemeContext);
+export const useTheme = () => useContext(Ctx);

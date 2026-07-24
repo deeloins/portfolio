@@ -1,183 +1,97 @@
-export const nav = {
-  logo: "MP",
-  links: [
-    { label: "Work",    href: "#work"    },
-    { label: "About",   href: "#about"   },
-    { label: "Skills",  href: "#skills"  },
-    { label: "Contact", href: "#contact" },
-  ],
-  cta: { label: "Get in touch", href: "#contact" },
-};
-
-export const hero = {
-  eyebrow: "Full-Stack Engineer · Lagos, Nigeria",
-  headline: "Building fast, accessible web products",
-  subheadline:
-    "I turn complex requirements into clean, maintainable interfaces. From Figma to production, I own the frontend — and the backend that powers it.",
-  ctas: [
-    { label: "View my work", href: "#work",   variant: "primary" as const },
-    { label: "Download CV",  href: "https://docs.google.com/document/d/1oi8mFWDTcyY_W0gTNuiLyxRczfhw4kD8UzAxPr19RQk/edit?usp=sharing", variant: "ghost"   as const },
-  ],
-  stack: ["React", "Next.js", "TypeScript", "Node.js", "Angular", "SQL"],
-};
-
-export const metrics = [
-  { value: "4+",  label: "Years in production"   },
-  { value: "10+", label: "Clients & companies"   },
-  { value: "3",   label: "Industries"             },
-  { value: "5+",  label: "Frameworks & runtimes" },
+export const NAV_LINKS = [
+  { label: "Home",       href: "#hero"     },
+  { label: "About Me",   href: "#about"    },
+  { label: "Projects",   href: "#projects" },
+  { label: "What I Do",  href: "#offer"    },
+  { label: "Skills",     href: "#skills"   },
+  { label: "FAQ",        href: "#faq"      },
 ];
 
-export const work = [
-  // ─── Featured: Employer work ───────────────────────────────────────
-  {
-    slug: "surebase",
-    eyebrow: "InsurTech · Stringify Consulting",
-    company: "Surebase",
-    role: "Frontend Developer",
-    period: "2024 – 2026",
-    summary:
-      "Surebase is a B2B insurance aggregation platform consolidating thousands of insurance products into a single unified API — serving brokers, fintechs, and banks across Nigeria. I contributed to the marketing site through Stringify Consulting.",
-    problem:
-      "The site needed interactive UI components to communicate a complex technical product clearly to a non-technical broker audience.",
-    approach:
-      "Built the insurance partner logo carousel — showcasing partners including AXA, Cornerstone, and Custodian — and the interactive flip card in the 'What is Surebase?' section, where users click to reveal the company's global expansion story. Also contributed to several other pages.",
-    outcome:
-      "The carousel and flip card became core storytelling elements on the landing page, communicating partner credibility and product vision side by side.",
-    tags: ["React", "TypeScript", "Framer Motion", "Component Architecture", "InsurTech"],
-    featured: true,
-    link: "https://surebase.vercel.app",
-  },
-  {
-    slug: "rubis-asphalt",
-    eyebrow: "Safety App · Shipped to Prod",
-    company: "Rubis Asphalt",
-    role: "Frontend Developer",
-    period: "2024",
-    summary:
-      "Rubis Asphalt is a workplace rules and safety application — similar in concept to Total's Golden Rules — used to communicate and enforce safety standards in the field. I owned a complete UI overhaul that shipped to production.",
-    problem:
-      "The existing interface was dated and didn't reflect the clarity a safety-critical application demands. It needed a full visual refresh without disrupting existing functionality.",
-    approach:
-      "With no Figma handoff, I drove all design decisions directly in code — establishing cleaner visual hierarchy, improving readability of safety content, and modernising the overall experience. Every decision was made with field workers in mind: people who need to access rules quickly and clearly.",
-    outcome:
-      "The redesigned application shipped to production. Delivering a full UI overhaul without a design file — from blank canvas to live product — demonstrated both design sensibility and the ability to work autonomously.",
-    tags: ["React", "UI Overhaul", "Production Delivery", "Design in Code"],
-    featured: true,
-    link: null,
-  },
-  {
-    slug: "undoquest",
-    eyebrow: "HealthTech · Promoted",
-    company: "Undoquest",
-    role: "Frontend Developer I → II",
-    period: "2022 – 2024",
-    summary:
-      "Joined as a Frontend Developer, built a modular component library and API integrations, and was promoted to Frontend Developer II — taking on architecture ownership, performance work, and direct product collaboration.",
-    problem:
-      "The frontend lacked a consistent component system, making feature development slow and introducing UI inconsistencies across the product.",
-    approach:
-      "Built a reusable React component library from scratch, standardised API integration patterns, and improved accessibility across key flows. After promotion, led a significant architecture refactor and worked directly with the product team on roadmap delivery.",
-    outcome:
-      "The component library became the foundation for all new feature work. The architecture refactor improved maintainability and reduced onboarding time. The promotion was the clearest signal of trust earned.",
-    tags: ["React", "TypeScript", "Component Library", "API Integration", "Accessibility"],
-    featured: true,
-    link: null,
-  },
+export const STATS = [
+  { value: "4+",  label: "Years of experience" },
+  { value: "10+", label: "Projects delivered"  },
+];
 
-  // ─── Freelance projects ─────────────────────────────────────────────
+export const CLIENTS = [
+  "Surebase", "HOSC Global", "CompEnergies",
+  "Spring & Bells", "Victor University", "Undoquest", "Stringify",
+];
+
+export const TICKER = [
+  "Full-Stack Engineer","React Developer","Next.js","TypeScript",
+  "UI/UX Minded","API Integration","Component Architecture",
+  "Accessible","Production Ready","Node.js","Angular","Remote Available",
+];
+
+export const TRAITS = [
+  { icon: "◎", label: "Creative"   },
+  { icon: "✦", label: "Reliable"   },
+  { icon: "▲", label: "Strategist" },
+  { icon: "◆", label: "Builder"    },
+  { icon: "⚡", label: "Efficient" },
+];
+
+export const TIMELINE = [
   {
-    slug: "hosc-global",
-    eyebrow: "Commodities Trading · Freelance",
-    company: "HOSC Global",
-    role: "Freelance Developer",
-    period: "2024",
-    summary:
-      "HOSC Global is a premier commodities trading firm with global reach, specialising in energy and trade solutions across international markets. I built their marketing and corporate presence website end-to-end.",
-    problem:
-      "A commodities trading firm operating at international scale needed a web presence that matched their professionalism and communicated their offer clearly to global trading partners.",
-    approach:
-      "Delivered a full corporate site — from brief to deployment — with a focus on clean, trust-building design, clear articulation of services, and performance on both desktop and mobile.",
-    outcome:
-      "A live, professional web presence for an internationally operating firm, delivered independently from design to production.",
-    tags: ["React", "Next.js", "Responsive Design", "Corporate Web", "Freelance"],
-    featured: false,
-    link: "https://www.hoscglobal.com",
+    year:"'21", title:"Where it started", handle:"@freelance", ago:"4 years ago",
+    short:"First clients. First real deadlines. First lesson in what production-quality actually means.",
+    long:"I opened VS Code for the first time with a freelance brief and no safety net. What happened next was equal parts panic and obsession. I built, broke things, fixed them, and kept going. That first year taught me more than any course ever could — not because the projects were complex, but because someone was counting on me to get it right.",
   },
   {
-    slug: "compenergies",
-    eyebrow: "Energy Sector · Freelance",
-    company: "CompEnergies",
-    role: "Freelance Developer",
-    period: "2023",
-    summary:
-      "CompEnergies is a petroleum products supplier across Nigeria, dealing in PMS, LPG, AGO, HFO, and Base Oil. I built their full corporate website.",
-    problem:
-      "A petroleum supplier in a regulated, trust-sensitive industry needed a web presence that conveyed reliability, product range, and professional credibility to B2B buyers.",
-    approach:
-      "Designed and built a clean, content-led site that clearly communicated their product offering, geographic reach, and company credentials — optimised for performance and mobile.",
-    outcome:
-      "A live corporate site that gives CompEnergies a credible digital presence in a sector where trust and professionalism are the primary buying signals.",
-    tags: ["React", "Responsive Design", "Corporate Web", "Energy Sector", "Freelance"],
-    featured: false,
-    link: "https://www.compenergies.com",
+    year:"'22", title:"Going deeper", handle:"@edtech", ago:"3 years ago",
+    short:"Victor University portal. First institutional product. First real component architecture.",
+    long:"I took on the Victor University student portal and had to think at a different scale. It wasn't just about making things look right — it was about making them work consistently, load fast, and hold up under real usage. I built a reusable component system for the first time and felt what it meant to write code other people could actually maintain.",
   },
   {
-    slug: "spring-and-bells",
-    eyebrow: "Travel & Tourism · Freelance",
-    company: "Spring & Bells",
-    role: "Freelance Developer",
-    period: "2023",
-    summary:
-      "Spring & Bells is a Lagos-based travel agency specialising in luxury trips, adventure tours, cultural experiences, and sporting event packages to destinations including France, Dubai, the USA, and Nigeria.",
-    problem:
-      "A travel agency selling aspirational experiences needed a website that could capture that sense of adventure visually while making it easy for customers to browse packages and get in touch.",
-    approach:
-      "Built a visually engaging site with destination showcases, package listings, and clear calls to action — with a design language that matched the premium, experience-led nature of the brand.",
-    outcome:
-      "A live travel booking-oriented site that reflects the brand's personality and gives customers a compelling first impression of the experiences on offer.",
-    tags: ["React", "Next.js", "Responsive Design", "Travel & Tourism", "Freelance"],
-    featured: false,
-    link: "https://springandbells.com",
+    year:"'22–'23", title:"First startup", handle:"@undoquest", ago:"2 years ago",
+    short:"Joined Undoquest as Frontend Developer. Built the component library from scratch.",
+    long:"Joining Undoquest meant going from freelance ownership to team collaboration — a completely different challenge. I built their React component library from the ground up, standardised API integration patterns, and learned what it means to ship features on a roadmap rather than a brief.",
   },
   {
-    slug: "victor-university",
-    eyebrow: "EdTech · Institutional",
-    company: "Victor University",
-    role: "Frontend Developer",
-    period: "2022",
-    summary:
-      "Modernised the student portal by introducing reusable React components, improving performance, and making the interface fully responsive across devices.",
-    problem:
-      "The student portal had an inconsistent, non-responsive UI that was slow to load and difficult to maintain.",
-    approach:
-      "Rebuilt key portal sections in React, introduced a reusable component architecture, and optimised for performance and mobile responsiveness.",
-    outcome:
-      "Students gained a significantly faster, more consistent experience across desktop and mobile.",
-    tags: ["React", "Responsive Design", "Performance", "Component Architecture"],
-    featured: false,
-    link: null,
+    year:"'23–'24", title:"Earned a promotion", handle:"@undoquest", ago:"1 year ago",
+    short:"Frontend Developer II at Undoquest. Architecture ownership. Direct product collaboration.",
+    long:"The promotion wasn't given — it was earned. After leading a significant architecture refactor and taking on product-level decisions, the title caught up to what I was already doing. I worked directly with the product team, owned performance improvements, and became the person people came to when the frontend needed to scale.",
+  },
+  {
+    year:"'24", title:"Shipped to production", handle:"@stringify", ago:"8 months ago",
+    short:"Rubis Asphalt UI overhaul. No Figma. Design decisions in code, direct to prod.",
+    long:"The Rubis Asphalt project had no design handoff. Just a brief and a broken interface that needed to work. I made every visual decision in code and shipped it to production. It was the clearest proof to myself that I had developed a design sensibility alongside the technical depth.",
+  },
+  {
+    year:"'24–Now", title:"Going full-stack", handle:"@stringify", ago:"Now",
+    short:"Stringify Consulting. APIs, Node.js, SQL. Owning features end-to-end.",
+    long:"At Stringify I stopped being purely a frontend engineer. I started designing REST endpoints, writing SQL queries, building Node.js service logic, and keeping the React layer in sync with the backend I was now responsible for too. The gap between frontend developer and full-stack engineer closed in production, not in a tutorial.",
   },
 ];
 
-export const skills = {
-  Frontend:  ["React", "Next.js", "Angular", "TypeScript", "JavaScript (ES6+)", "HTML5", "CSS3", "Tailwind CSS", "Framer Motion", "Responsive Design", "Accessibility (WCAG)"],
-  Backend:   ["Node.js", "Express", "REST API Design", "SQL", "PostgreSQL", "MySQL"],
-  Tooling:   ["Git & GitHub", "Figma → Code", "VS Code", "CI/CD", "Agile / Scrum", "Code Review"],
-  Soft:      ["Client Communication", "Cross-functional Collaboration", "Architecture Ownership", "Long-term Product Thinking"],
-};
-
-export const timeline = [
-  { year: "2024 – Present", company: "Stringify Consulting",  role: "Full-Stack Engineer",    current: true  },
-  { year: "2023 – 2024",    company: "Undoquest",             role: "Frontend Developer II",  current: false },
-  { year: "2022 – 2023",    company: "Undoquest",             role: "Frontend Developer",     current: false },
-  { year: "2022",           company: "Victor University",     role: "Frontend Developer",     current: false },
-  { year: "2021 – Present", company: "Freelance",             role: "Independent Developer",  current: false },
+export const WORK = [
+  { num:"01", company:"Surebase",       desc:"B2B insurance aggregation platform — the future of insurance distribution, built on one API.",  tags:["React","TypeScript","Framer Motion"], link:"https://surebase.vercel.app",          image:"/project-screenshots/surebase.jpg",        bg:"#0d1b2a" },
+  { num:"02", company:"HOSC Global",    desc:"Corporate site for a premier commodities trading firm with global reach.",                       tags:["React","Next.js","Responsive"],        link:"https://www.hoscglobal.com",            image:"/project-screenshots/hosc-global.jpg",     bg:"#1a1a0a" },
+  { num:"03", company:"CompEnergies",   desc:"Trusted suppliers of petroleum products across Nigeria — PMS, LPG, AGO, HFO.",                  tags:["React","Corporate Web","Responsive"],  link:"https://www.compenergies.com",          image:"/project-screenshots/compenergies.jpg",    bg:"#1a0d2a" },
+  { num:"04", company:"Spring & Bells", desc:"Lagos-based travel agency specialising in luxury and adventure packages worldwide.",              tags:["React","Next.js","Travel"],            link:"https://springandbells.com",            image:"/project-screenshots/spring-and-bells.jpg",bg:"#0a1a0a" },
 ];
 
-export const contact = {
-  email: "mpodeke@gmail.com",
-  github: "https://github.com/deeloins",
-  linkedin: "https://www.linkedin.com/in/michael-podeke/",
-  availability: "Open to full-stack roles, frontend contracts, and remote opportunities.",
+export const OFFER = [
+  { num:"01", title:"Frontend Development",   desc:"React and Next.js applications built with a focus on performance, accessibility, and maintainability. TypeScript throughout, responsive across every device." },
+  { num:"02", title:"Full-Stack Engineering", desc:"End-to-end feature delivery — REST API design, Node.js services, SQL data models, and the React frontend that consumes them. One engineer who owns it all." },
+  { num:"03", title:"UI Implementation",      desc:"Figma to production without losing fidelity. Pixel-perfect layouts that don't sacrifice interactivity or responsiveness." },
+  { num:"04", title:"Component Systems",      desc:"Reusable component libraries that make your team faster. Built from scratch at startups, designed to scale without becoming a maintenance burden." },
+  { num:"05", title:"API Integration",        desc:"Connecting frontend interfaces to backend services cleanly. REST APIs, auth flows, data fetching — integrated properly so they don't break when things change." },
+  { num:"06", title:"Freelance Delivery",     desc:"Full ownership from brief to deployment. Scoping, design collaboration, build, deployment, and maintenance. Doing this since 2021." },
+];
+
+export const SKILLS = {
+  Frontend: ["React","Next.js","Angular","TypeScript","JavaScript (ES6+)","HTML5","CSS3","Tailwind CSS","Framer Motion","Responsive Design","Accessibility (WCAG)"],
+  Backend:  ["Node.js","Express","REST API Design","SQL","PostgreSQL","MySQL"],
+  Tooling:  ["Git & GitHub","Figma → Code","VS Code","CI/CD","Agile / Scrum","Code Review"],
 };
+
+export const FAQ = [
+  { q:"What do you specialise in?",                  a:"React and Next.js on the frontend, Node.js and REST APIs on the backend. I'm comfortable across the full delivery chain — from Figma handoff to production deployment. Angular too, which is rarer than you'd think." },
+  { q:"Are you available for freelance or contract?", a:"Yes. I'm open to freelance projects, short-term contracts, and remote full-time roles. If you have something in mind, send me an email and we can talk through the scope." },
+  { q:"What does your project process look like?",    a:"It starts with a conversation about goals, timeline, and constraints. From there I scope the work, align on deliverables, and build in stages — sharing progress as I go so nothing drifts. Clean handoff with documented code at the end." },
+  { q:"Can you work from a Figma design?",            a:"Yes — Figma to production is a core part of my workflow. I read design files accurately, ask the right questions early, and translate layouts pixel-perfectly without losing interactivity or responsiveness." },
+  { q:"Teams or solo clients?",                       a:"Both. I've been embedded in product teams at startups and worked independently for solo founders and small businesses. I adapt to whatever workflow and communication style the project needs." },
+  { q:"What industries have you worked in?",          a:"InsurTech, HealthTech, EdTech, Energy, Travel and Tourism, and Consulting. The variety means I get up to speed quickly in new domains." },
+  { q:"How do I get in touch?",                       a:"Email is best — mpodeke@gmail.com. I usually respond within 24 hours. LinkedIn works too if that's easier." },
+];
